@@ -3,6 +3,7 @@ from RPi import GPIO
 import time
 import urllib
 import twit
+from string import Template
 
 messages = [line.strip() for line in open('messages','r').readlines()]
 
@@ -26,6 +27,7 @@ while True:
     except:
       pass
     # TODO: switch between messages
-    message = '@mr_goodwin '+messages[rings%len(messages)]
+    template = Template('@mr_goodwin '+messages[rings%len(messages)])
+    message = template.substitute({'time':time.strftime("%H:%M", time.localtime())});
     print 'message is '+message
     twit.tweet(message)
