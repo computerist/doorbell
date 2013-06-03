@@ -26,4 +26,6 @@ while True:
     except:
       pass
     # TODO: switch between messages
-    twit.tweet('@mr_goodwin '+messages[rings%len(messages)])
+    message = '@mr_goodwin '+messages[rings%len(messages)]
+    print 'message is '+message
+    twit.tweet(message)
