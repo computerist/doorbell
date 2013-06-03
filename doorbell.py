@@ -20,7 +20,7 @@ while True:
   while GPIO.input(PUSH):
     pass
   end = time.time()
-  if end-start > 0.2:
+  if end-start > 0.05:
     rings = rings + 1
     try:
       urllib.urlopen('http://mini.local:8888/')
