@@ -8,9 +8,11 @@ messages = [line.strip() for line in open('messages','r').readlines()]
 
 # GPIO pin 9 takes the bell push switch
 PUSH = 9
+BELL = 10
 
 GPIO.setmode(GPIO.BCM) #numbering scheme that corresponds to breakout board and pin layout
 GPIO.setup(PUSH,GPIO.IN)
+GPIO.setup(BELL,GPIO.OUT)
 
 rings = 0
 
@@ -24,7 +26,13 @@ while True:
     try:
       urllib.urlopen('http://mini.local:8888/')
     except:
-      pass
+      print 'something went wrong contacting the shed'
+    try:
+      GPIO.output(BELL,True)
+      time.sleep(0.1)
+      GPIO.output(BELL,False)
+    except:
+      print 'something went wrong ringing the bell'
     # TODO: switch between messages
     message = '@mr_goodwin '+messages[rings%len(messages)]
     print 'message is '+message
