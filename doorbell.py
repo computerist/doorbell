@@ -3,6 +3,7 @@ from RPi import GPIO
 import time
 import urllib
 import twit
+from string import Template
 
 messages = [line.strip() for line in open('messages','r').readlines()]
 
@@ -21,7 +22,7 @@ while True:
   while GPIO.input(PUSH):
     pass
   end = time.time()
-  if end-start > 0.2:
+  if end-start > 0.05:
     rings = rings + 1
     try:
       urllib.urlopen('http://mini.local:8888/')
@@ -34,6 +35,7 @@ while True:
     except:
       print 'something went wrong ringing the bell'
     # TODO: switch between messages
-    message = '@mr_goodwin '+messages[rings%len(messages)]
+    template = Template('@mr_goodwin '+messages[rings%len(messages)])
+    message = template.substitute({'time':time.strftime("%H:%M", time.localtime())});
     print 'message is '+message
     twit.tweet(message)

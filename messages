@@ -1,9 +1,9 @@
-Clang!
-Ding Dong!
-Ring!
-Bong!
-Tweet!
-There's someone at the door.
-You have a visitor.
-Someone is here.
-Twang!
+Clang! (${time})
+Ding Dong!  (${time})
+Ring! (${time})
+Bong! (${time})
+Tweet! (${time})
+There's someone at the door. (${time})
+You have a visitor. (${time})
+Someone is here. (${time})
+Twang! (${time})
