@@ -1,8 +1,10 @@
-from twitter import *
 from local_settings import *
-
-t = Twitter(auth=OAuth(OAUTH_TOKEN, OAUTH_SECRET, CONSUMER_KEY, CONSUMER_SECRET))
+import twitter
+api = twitter.Api(consumer_key = CONSUMER_KEY,
+                  consumer_secret = CONSUMER_SECRET,
+                  access_token_key = ACCESS_TOKEN,
+                  access_token_secret = ACCESS_TOKEN_SECRET)
 
 # Update your status
 def tweet(message):
-  t.statuses.update(status=message)
+  api.PostUpdate(message)
